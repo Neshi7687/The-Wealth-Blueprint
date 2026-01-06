@@ -732,19 +732,37 @@ with col_donut1:
 with col_donut2:
     st.markdown("#### 📊 Allocation Details")
     st.markdown(f"""
-        <div class="info-card">
-            <div style='margin-bottom: 1.5rem;'>
-                <p style='color: #0056B3; font-size: 1.1rem; margin: 0.5rem 0;'>
-                    <b>🔵 Equity ({equity_alloc*100:.0f}%)</b>
-                </p>
-                <p style='margin: 0.3rem 0;'>
-                    <b>Amount:</b> ₹{equity_amount:,.0f}<br>
-                    <b>Return:</b> {equity_return*100:.1f}% p.a.<br>
-                    <b>Risk:</b> {'High' if equity_alloc >= 0.7 else 'Moderate' if equity_alloc >= 0.4 else 'Low'}
-                </p>
+            <div class="info-card">
+                <div style='margin-bottom: 1.5rem;'>
+                    <p style='color: #0056B3; font-size: 1.1rem; margin: 0.5rem 0;'>
+                        <b>🔵 Equity ({equity_alloc*100:.0f}%)</b>
+                    </p>
+                    <p style='margin: 0.3rem 0;'>
+                        <b>Amount:</b> ₹{equity_amount:,.0f}<br>
+                        <b>Return:</b> {equity_return*100:.1f}% p.a.<br>
+                        <b>Risk:</b> {'High' if equity_alloc >= 0.7 else 'Moderate' if equity_alloc >= 0.4 else 'Low'}
+                    </p>
+                </div>
+                <div>
+                    <p style='color: #60A5FA; font-size: 1.1rem; margin: 0.5rem 0;'>
+                        <b>⚪ Debt ({debt_alloc*100:.0f}%)</b>
+                    </p>
+                    <p style='margin: 0.3rem 0;'>
+                         <b>Amount:</b> ₹{debt_amount:,.0f}<br>
+                         <b>Return:</b> {debt_return*100:.1f}% p.a.<br>
+                         <b>Risk:</b> Low
+                    </p>
+                </div>
             </div>
-            <div>
-                <p style='color: #60A5FA; font-size: 1.1rem; margin: 0.5rem 0;'>
-                    <b>🔵 Debt ({debt_alloc*100:.0f}%)</b>
-                </p>
-                <p
+        """, unsafe_allow_html=True)
+
+    # --- Footer Section ---
+    st.markdown("---")
+    st.markdown(f"""
+        <div style='text-align: center; padding: 20px; color: #6B7280;'>
+            <p>Designed & Developed by <b>[Your Name]</b> | PGDM Finance & Analytics Portfolio</p>
+        </div>
+    """, unsafe_allow_html=True)
+
+if __name__ == "__main__":
+    main()
