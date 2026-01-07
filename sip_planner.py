@@ -244,12 +244,13 @@ st.markdown("""
     .stDownloadButton > button:hover {
         background-color: #2563eb;
     }
-    </style>
+    
     /* Increase Size of Slider Value (The floating number on the handle) */
     div[data-testid="stThumbValue"] {
         font-size: 1.8rem !important; /* Significantly bigger */
         font-weight: 800 !important;  /* Extra Bold */
         padding-bottom: 5px !important; /* Little space */
+    </style>
     }
 """, unsafe_allow_html=True)
 
@@ -854,6 +855,7 @@ for col in ['Monthly SIP', 'Total Invested', 'Total Wealth', 'Wealth Gain']:
     display_data[col] = display_data[col].apply(lambda x: f"₹{x:,.0f}")
 
 # --- Styled Dataframe (Updated Header Color) ---
+# --- Styled Dataframe (Updated Header Color) ---
 def highlight_rows(row):
     # CSS for the rows: Dark Grey Background + White Text + Bigger Font
     return ['background-color: #1e293b; color: white; font-size: 1.2rem; font-family: Inter; border-bottom: 1px solid #334155'] * len(row)
@@ -863,40 +865,19 @@ styled_df = display_data.style.apply(highlight_rows, axis=1)\
     .set_table_styles([
         # Header Styling: NEW Background Color (#041759) + Bold White Text
         {'selector': 'th', 'props': [
-            ('background-color', '#041759'),  # <--- CHANGED THIS LINE
+            ('background-color', '#041759'),  # <--- YOUR COLOR
             ('color', 'white'), 
             ('font-size', '1.3rem'), 
             ('font-weight', 'bold'),
             ('padding', '12px'),
             ('border-bottom', '2px solid #3b82f6')
         ]},
-        # Cell Styling: Padding for better readability
+        # Cell Styling
         {'selector': 'td', 'props': [('padding', '12px')]}
     ])
 
-# Render
-st.dataframe(
-    styled_df, 
-    use_container_width=True, 
-    hide_index=True, 
-    height=500,
-    column_config={
-        "Year": st.column_config.NumberColumn(format="%d"),
-    }
-)
-
-# Render with st.table (Better for custom styling visibility) or st.dataframe
-# Note: st.dataframe blocks some custom CSS. For strictly "Bigger Font", st.table is often better, 
-# but st.dataframe is scrollable. We will use st.dataframe with the styles applied.
-st.dataframe(
-    styled_df, 
-    use_container_width=True, 
-    hide_index=True, 
-    height=500,
-    column_config={
-        "Year": st.column_config.NumberColumn(format="%d"), # Remove commas from Year
-    }
-)
+# Render with st.table to force proper styling
+st.table(styled_df)
 
 # Export functionality
 st.markdown("<br>", unsafe_allow_html=True)
