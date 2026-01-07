@@ -422,19 +422,38 @@ st.markdown("""
 # Risk Profile Selection with Tabs
 tab1, tab2 = st.tabs(["Strategy & Allocation", "Projection Analysis"])
 with tab1:
-    # 1. Profile Buttons
-    col_r1, col_r2, col_r3 = st.columns(3)
-    with col_r1:
-        if st.button("🛡️ Conservative", use_container_width=True, key="btn_con"):
-            st.session_state.selected_risk = "Conservative"
-    with col_r2:
-        if st.button("⚖️ Balanced", use_container_width=True, key="btn_bal", type="primary"):
-            st.session_state.selected_risk = "Balanced"
-    with col_r3:
-        if st.button("🚀 Aggressive", use_container_width=True, key="btn_agg"):
-            st.session_state.selected_risk = "Aggressive"
+    # --- 0. Asset Class Definitions (Tooltips) ---
+    tooltips = {
+        "Debt": "Low-risk funds that lend money to the government/companies. Acts as a safety net.",
+        "Gold": "Invests in physical gold prices. Protects value during inflation or market panic.",
+        "Large": "Top 100 established companies (Nifty 50). Stable growth with moderate risk.",
+        "Mid": "Medium-sized growing companies. Higher growth potential than large caps but riskier.",
+        "Small": "Small, emerging companies. Highest growth potential but very volatile (risky)."
+    }
 
-    # Get Data
+    # --- 1. Risk Profile Buttons (Active Highlight Logic) ---
+    col_r1, col_r2, col_r3 = st.columns(3)
+    
+    # We check session state to decide which button gets the "Red/Primary" highlight
+    with col_r1:
+        if st.button("🛡️ Conservative", use_container_width=True, key="btn_con", 
+                     type="primary" if st.session_state.selected_risk == "Conservative" else "secondary"):
+            st.session_state.selected_risk = "Conservative"
+            st.rerun() # Force reload to apply red color immediately
+            
+    with col_r2:
+        if st.button("⚖️ Balanced", use_container_width=True, key="btn_bal", 
+                     type="primary" if st.session_state.selected_risk == "Balanced" else "secondary"):
+            st.session_state.selected_risk = "Balanced"
+            st.rerun()
+
+    with col_r3:
+        if st.button("🚀 Aggressive", use_container_width=True, key="btn_agg", 
+                     type="primary" if st.session_state.selected_risk == "Aggressive" else "secondary"):
+            st.session_state.selected_risk = "Aggressive"
+            st.rerun()
+
+    # Get Data for selected profile
     profile_data = RISK_PROFILES[st.session_state.selected_risk]
     allocs = profile_data["allocations"]
     rets = profile_data["returns"]
@@ -451,12 +470,12 @@ with tab1:
     col_def1, col_def2 = st.columns(2)
     with col_def1:
         st.markdown('<p class="input-label">Debt Mutual Funds</p>', unsafe_allow_html=True)
-        debt_pct = st.slider("debt_slider", 0, 100, allocs["Debt MF"], key="s_debt")
-        st.markdown(f'<p class="input-value">{debt_pct}% <span style="font-size:0.8rem; color:#9ca3af">(Exp: {rets["Debt MF"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+        debt_pct = st.slider("debt_slider", 0, 100, allocs["Debt MF"], key="s_debt", help=tooltips["Debt"])
+        st.markdown(f'<p class="input-value">{debt_pct}% <span style="font-size:0.8rem; color:#9ca3af; font-weight:400;">(Suggested: {allocs["Debt MF"]}% | Expected Return: {rets["Debt MF"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
     with col_def2:
         st.markdown('<p class="input-label">Gold ETFs</p>', unsafe_allow_html=True)
-        gold_pct = st.slider("gold_slider", 0, 100, allocs["Gold ETF"], key="s_gold")
-        st.markdown(f'<p class="input-value">{gold_pct}% <span style="font-size:0.8rem; color:#9ca3af">(Exp: {rets["Gold ETF"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+        gold_pct = st.slider("gold_slider", 0, 100, allocs["Gold ETF"], key="s_gold", help=tooltips["Gold"])
+        st.markdown(f'<p class="input-value">{gold_pct}% <span style="font-size:0.8rem; color:#9ca3af; font-weight:400;">(Suggested: {allocs["Gold ETF"]}% | Expected Return: {rets["Gold ETF"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
 
     # --- CLASS II: CORE EQUITY ---
     st.markdown(f"""
@@ -466,8 +485,8 @@ with tab1:
     """, unsafe_allow_html=True)
     
     st.markdown('<p class="input-label">Large Cap (Nifty 50)</p>', unsafe_allow_html=True)
-    large_pct = st.slider("large_slider", 0, 100, allocs["Large Cap"], key="s_large")
-    st.markdown(f'<p class="input-value">{large_pct}% <span style="font-size:0.8rem; color:#9ca3af">(Exp: {rets["Large Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+    large_pct = st.slider("large_slider", 0, 100, allocs["Large Cap"], key="s_large", help=tooltips["Large"])
+    st.markdown(f'<p class="input-value">{large_pct}% <span style="font-size:0.8rem; color:#9ca3af; font-weight:400;">(Suggested: {allocs["Large Cap"]}% | Expected Return: {rets["Large Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
 
     # --- CLASS III: ALPHA GENERATORS ---
     st.markdown(f"""
@@ -479,17 +498,61 @@ with tab1:
     col_alp1, col_alp2 = st.columns(2)
     with col_alp1:
         st.markdown('<p class="input-label">Mid Cap Funds</p>', unsafe_allow_html=True)
-        mid_pct = st.slider("mid_slider", 0, 100, allocs["Mid Cap"], key="s_mid")
-        st.markdown(f'<p class="input-value">{mid_pct}% <span style="font-size:0.8rem; color:#9ca3af">(Exp: {rets["Mid Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+        mid_pct = st.slider("mid_slider", 0, 100, allocs["Mid Cap"], key="s_mid", help=tooltips["Mid"])
+        st.markdown(f'<p class="input-value">{mid_pct}% <span style="font-size:0.8rem; color:#9ca3af; font-weight:400;">(Suggested: {allocs["Mid Cap"]}% | Expected Return: {rets["Mid Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
     with col_alp2:
         st.markdown('<p class="input-label">Small Cap Funds</p>', unsafe_allow_html=True)
-        small_pct = st.slider("small_slider", 0, 100, allocs["Small Cap"], key="s_small")
-        st.markdown(f'<p class="input-value">{small_pct}% <span style="font-size:0.8rem; color:#9ca3af">(Exp: {rets["Small Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+        small_pct = st.slider("small_slider", 0, 100, allocs["Small Cap"], key="s_small", help=tooltips["Small"])
+        st.markdown(f'<p class="input-value">{small_pct}% <span style="font-size:0.8rem; color:#9ca3af; font-weight:400;">(Suggested: {allocs["Small Cap"]}% | Expected Return: {rets["Small Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
 
     # Check Total
     total_alloc = debt_pct + gold_pct + large_pct + mid_pct + small_pct
     if total_alloc != 100:
-        st.warning(f" Total Allocation is {total_alloc}%. Please adjust to 100%.")
+        st.warning(f"⚠️ Total Allocation is {total_alloc}%. Please adjust to 100%.")
+   
+    # --- NEW: Strategy Decoder (Complete & Accurate Logic) ---
+    st.markdown("<br>", unsafe_allow_html=True)
+    with st.expander("💡 Strategy Logic: The 'Why' Behind Your Portfolio"):
+        st.markdown("""
+            <div style='color: #e0e7ff; font-size: 0.95rem; line-height: 1.6;'>
+                <p>This planner uses a <b>Strategic Asset Allocation (SAA)</b> model. Instead of random selection, we structure your portfolio into three functional "buckets" based on your risk profile:</p>
+                
+                <div style='margin-bottom: 15px; border-left: 3px solid #9ca3af; padding-left: 10px;'>
+                    <h5 style='color: #9ca3af; margin: 0;'>🛡️ Bucket 1: Defensive Assets (Debt & Gold)</h5>
+                    <p style='margin: 5px 0 0 0;'>
+                        <b>The Logic:</b> These are your "safety brakes." They protect your capital during market crashes.<br>
+                        <b>Allocation Strategy:</b>
+                        <br>• <b>Conservative:</b> High allocation (<b>70%</b>) to prioritize safety over growth.
+                        <br>• <b>Balanced:</b> Moderate allocation (<b>40%</b>) to provide a cushion while allowing growth.
+                        <br>• <b>Aggressive:</b> Low allocation (<b>15%</b>) as the focus is purely on maximizing returns.<br>
+                        <b>Expected Return:</b> <span style='color: #9ca3af'><b>~8% - 11%</b></span> (Lower risk = Lower return)
+                    </p>
+                </div>
+
+                <div style='margin-bottom: 15px; border-left: 3px solid #3b82f6; padding-left: 10px;'>
+                    <h5 style='color: #3b82f6; margin: 0;'>⚓ Bucket 2: Core Equity (Large Cap / Nifty 50)</h5>
+                    <p style='margin: 5px 0 0 0;'>
+                        <b>The Logic:</b> This is your "engine." It consists of India's top 100 established companies that provide reliable, steady growth.<br>
+                        <b>Allocation Strategy:</b>
+                        <br>• <b>Balanced:</b> Highest allocation (<b>30%</b>) here to act as the primary stabilizer.
+                        <br>• <b>Conservative/Aggressive:</b> Slightly lower (<b>20-25%</b>) as they lean heavily towards either Safety or Alpha.<br>
+                        <b>Expected Return:</b> <span style='color: #3b82f6'><b>~13% - 14%</b></span> (Moderate risk = Moderate return)
+                    </p>
+                </div>
+
+                <div style='margin-bottom: 0px; border-left: 3px solid #10b981; padding-left: 10px;'>
+                    <h5 style='color: #10b981; margin: 0;'>🚀 Bucket 3: Alpha Generators (Mid & Small Cap)</h5>
+                    <p style='margin: 5px 0 0 0;'>
+                        <b>The Logic:</b> This is your "accelerator." These are emerging companies that offer huge growth potential but come with higher volatility.<br>
+                        <b>Allocation Strategy:</b>
+                        <br>• <b>Aggressive:</b> Heavy allocation (<b>60%</b>) to maximize long-term compounding.
+                        <br>• <b>Balanced:</b> Moderate exposure (<b>30%</b>) to boost returns without excessive risk.
+                        <br>• <b>Conservative:</b> Minimal exposure (<b>10%</b>) to limit volatility.<br>
+                        <b>Expected Return:</b> <span style='color: #10b981'><b>~16% - 20%</b></span> (Higher risk = Higher return)
+                    </p>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
 with tab2:
     # Calculate weighted return based on user sliders
     weighted_return = (
