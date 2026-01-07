@@ -251,27 +251,45 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Financial Constants
+# Updated Strategic Asset Allocation Framework 
 RISK_PROFILES = {
     "Conservative": {
-        "debt_alloc": 0.70,
-        "equity_alloc": 0.30,
-        "debt_return": 0.07,
-        "equity_return": 0.12
+        "allocations": {
+            "Debt MF": 60, "Gold ETF": 10,          # Defensive
+            "Large Cap": 20,                        # Core Equity
+            "Mid Cap": 10, "Small Cap": 0           # Alpha Generators
+        },
+        "returns": {
+            "Debt MF": 0.07, "Gold ETF": 0.11,
+            "Large Cap": 0.13,
+            "Mid Cap": 0.15, "Small Cap": 0.18
+        }
     },
     "Balanced": {
-        "debt_alloc": 0.50,
-        "equity_alloc": 0.50,
-        "debt_return": 0.08,
-        "equity_return": 0.135
+        "allocations": {
+            "Debt MF": 30, "Gold ETF": 10,
+            "Large Cap": 30,
+            "Mid Cap": 20, "Small Cap": 10
+        },
+        "returns": {
+            "Debt MF": 0.075, "Gold ETF": 0.11,
+            "Large Cap": 0.135,
+            "Mid Cap": 0.16, "Small Cap": 0.19
+        }
     },
     "Aggressive": {
-        "debt_alloc": 0.20,
-        "equity_alloc": 0.80,
-        "debt_return": 0.08,
-        "equity_return": 0.16
+        "allocations": {
+            "Debt MF": 10, "Gold ETF": 5,
+            "Large Cap": 25,
+            "Mid Cap": 30, "Small Cap": 30
+        },
+        "returns": {
+            "Debt MF": 0.08, "Gold ETF": 0.11,
+            "Large Cap": 0.14,
+            "Mid Cap": 0.18, "Small Cap": 0.22
+        }
     }
 }
-
 LTCG_TAX_RATE = 0.125
 LTCG_EXEMPTION = 125000
 
@@ -345,7 +363,7 @@ st.markdown("""
 # Section 1: Investment Parameters
 st.markdown("""
     <div class="section-card">
-        <h2 class="section-title">1. Investment Parameters</h2>
+        <h2 class="section-title"> Investment Parameters</h2>
     </div>
 """, unsafe_allow_html=True)
 
@@ -397,91 +415,91 @@ st.markdown("<br>", unsafe_allow_html=True)
 # Section 2: Strategy & Risk Profile
 st.markdown("""
     <div class="section-card">
-        <h2 class="section-title">2. Select Risk Profile</h2>
+        <h2 class="section-title"> Select Risk Profile</h2>
     </div>
 """, unsafe_allow_html=True)
 
 # Risk Profile Selection with Tabs
 tab1, tab2 = st.tabs(["Strategy & Allocation", "Projection Analysis"])
 with tab1:
-    # Risk Profile Buttons
+    # 1. Profile Buttons
     col_r1, col_r2, col_r3 = st.columns(3)
-    
     with col_r1:
-        if st.button("Conservative", use_container_width=True, key="btn_conservative"):
+        if st.button("🛡️ Conservative", use_container_width=True, key="btn_con"):
             st.session_state.selected_risk = "Conservative"
-    
     with col_r2:
-        if st.button("Balanced", use_container_width=True, key="btn_balanced", type="primary"):
+        if st.button("⚖️ Balanced", use_container_width=True, key="btn_bal", type="primary"):
             st.session_state.selected_risk = "Balanced"
-    
     with col_r3:
-        if st.button("Aggressive", use_container_width=True, key="btn_aggressive"):
+        if st.button("🚀 Aggressive", use_container_width=True, key="btn_agg"):
             st.session_state.selected_risk = "Aggressive"
+
+    # Get Data
+    profile_data = RISK_PROFILES[st.session_state.selected_risk]
+    allocs = profile_data["allocations"]
+    rets = profile_data["returns"]
     
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # --- CLASS I: DEFENSIVE ASSETS ---
     st.markdown(f"""
-        <div style='text-align: center; margin: 1rem 0;'>
-            <p style='color: #3b82f6; font-size: 1.2rem; font-weight: 600;'>
-                Selected: {st.session_state.selected_risk}
-            </p>
+        <div style='background-color: #1a1a1a; padding: 10px 15px; border-radius: 8px; border-left: 4px solid #9ca3af; margin-bottom: 15px;'>
+            <h4 style='color: white; margin:0;'>🛡️ I. Defensive Assets (Safety & Cushioning)</h4>
         </div>
     """, unsafe_allow_html=True)
     
-    # Get selected profile
-    profile = RISK_PROFILES[st.session_state.selected_risk]
-    debt_alloc = profile["debt_alloc"]
-    equity_alloc = profile["equity_alloc"]
-    debt_return = profile["debt_return"]
-    equity_return = profile["equity_return"]
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    # Asset Allocation Sliders
-    col_a1, col_a2 = st.columns(2)
-    
-    with col_a1:
-        st.markdown('<p class="input-label">Debt MF (%)</p>', unsafe_allow_html=True)
-        debt_percent = st.slider(
-            "debt_slider",
-            0, 100,
-            int(debt_alloc * 100),
-            label_visibility="collapsed"
-        )
-        st.markdown(f'<p class="input-value">{debt_percent}% (Adaptive Return: {debt_return*100:.1f}%)</p>', unsafe_allow_html=True)
-    
-    with col_a2:
-        st.markdown('<p class="input-label">Flexi Cap (%)</p>', unsafe_allow_html=True)
-        equity_percent = 100 - debt_percent
-        st.markdown(f'<p class="input-value">{equity_percent}% (Adaptive Return: {equity_return*100:.2f}%)</p>', unsafe_allow_html=True)
-    
-    # Additional asset classes
-    col_a3, col_a4 = st.columns(2)
-    
-    with col_a3:
-        st.markdown('<p class="input-label">Gold ETF (%)</p>', unsafe_allow_html=True)
-        gold_percent = st.slider("gold_slider", 0, 50, 10, label_visibility="collapsed")
-        st.markdown(f'<p class="input-value">{gold_percent}% (Adaptive Return: 15.51%)</p>', unsafe_allow_html=True)
-    
-    with col_a4:
-        st.markdown('<p class="input-label">Mid Cap (%)</p>', unsafe_allow_html=True)
-        midcap_percent = st.slider("midcap_slider", 0, 50, 5, label_visibility="collapsed")
-        st.markdown(f'<p class="input-value">{midcap_percent}% (Adaptive Return: 27.66%)</p>', unsafe_allow_html=True)
-    
-    col_a5, col_a6 = st.columns(2)
-    
-    with col_a5:
-        st.markdown('<p class="input-label">Nifty 50 (%)</p>', unsafe_allow_html=True)
-        nifty_percent = st.slider("nifty_slider", 0, 50, 30, label_visibility="collapsed")
-        st.markdown(f'<p class="input-value">{nifty_percent}% (Adaptive Return: 15.87%)</p>', unsafe_allow_html=True)
-    
-    with col_a6:
-        st.markdown('<p class="input-label">Small Cap (%)</p>', unsafe_allow_html=True)
-        smallcap_percent = st.slider("smallcap_slider", 0, 50, 5, label_visibility="collapsed")
-        st.markdown(f'<p class="input-value">{smallcap_percent}% (Adaptive Return: 20.23%)</p>', unsafe_allow_html=True)
+    col_def1, col_def2 = st.columns(2)
+    with col_def1:
+        st.markdown('<p class="input-label">Debt Mutual Funds</p>', unsafe_allow_html=True)
+        debt_pct = st.slider("debt_slider", 0, 100, allocs["Debt MF"], key="s_debt")
+        st.markdown(f'<p class="input-value">{debt_pct}% <span style="font-size:0.8rem; color:#9ca3af">(Exp: {rets["Debt MF"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+    with col_def2:
+        st.markdown('<p class="input-label">Gold ETFs</p>', unsafe_allow_html=True)
+        gold_pct = st.slider("gold_slider", 0, 100, allocs["Gold ETF"], key="s_gold")
+        st.markdown(f'<p class="input-value">{gold_pct}% <span style="font-size:0.8rem; color:#9ca3af">(Exp: {rets["Gold ETF"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
 
+    # --- CLASS II: CORE EQUITY ---
+    st.markdown(f"""
+        <div style='background-color: #1a1a1a; padding: 10px 15px; border-radius: 8px; border-left: 4px solid #3b82f6; margin-top: 20px; margin-bottom: 15px;'>
+            <h4 style='color: white; margin:0;'>⚓ II. Core Equity (Stability)</h4>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('<p class="input-label">Large Cap (Nifty 50)</p>', unsafe_allow_html=True)
+    large_pct = st.slider("large_slider", 0, 100, allocs["Large Cap"], key="s_large")
+    st.markdown(f'<p class="input-value">{large_pct}% <span style="font-size:0.8rem; color:#9ca3af">(Exp: {rets["Large Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+
+    # --- CLASS III: ALPHA GENERATORS ---
+    st.markdown(f"""
+        <div style='background-color: #1a1a1a; padding: 10px 15px; border-radius: 8px; border-left: 4px solid #10b981; margin-top: 20px; margin-bottom: 15px;'>
+            <h4 style='color: white; margin:0;'>🚀 III. Alpha Generators (High Growth)</h4>
+        </div>
+    """, unsafe_allow_html=True)
+
+    col_alp1, col_alp2 = st.columns(2)
+    with col_alp1:
+        st.markdown('<p class="input-label">Mid Cap Funds</p>', unsafe_allow_html=True)
+        mid_pct = st.slider("mid_slider", 0, 100, allocs["Mid Cap"], key="s_mid")
+        st.markdown(f'<p class="input-value">{mid_pct}% <span style="font-size:0.8rem; color:#9ca3af">(Exp: {rets["Mid Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+    with col_alp2:
+        st.markdown('<p class="input-label">Small Cap Funds</p>', unsafe_allow_html=True)
+        small_pct = st.slider("small_slider", 0, 100, allocs["Small Cap"], key="s_small")
+        st.markdown(f'<p class="input-value">{small_pct}% <span style="font-size:0.8rem; color:#9ca3af">(Exp: {rets["Small Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+
+    # Check Total
+    total_alloc = debt_pct + gold_pct + large_pct + mid_pct + small_pct
+    if total_alloc != 100:
+        st.warning(f" Total Allocation is {total_alloc}%. Please adjust to 100%.")
 with tab2:
-    # Calculate weighted return
-    weighted_return = (debt_alloc * debt_return) + (equity_alloc * equity_return)
+    # Calculate weighted return based on user sliders
+    weighted_return = (
+        (debt_pct * rets["Debt MF"]) + 
+        (gold_pct * rets["Gold ETF"]) + 
+        (large_pct * rets["Large Cap"]) + 
+        (mid_pct * rets["Mid Cap"]) + 
+        (small_pct * rets["Small Cap"])
+    ) / 100
+    
     monthly_return = weighted_return / 12
     
     # Calculate SIP
@@ -552,16 +570,16 @@ with tab2:
     with viz_col1:
         st.markdown('<h3 style="color: #ffffff; margin-bottom: 1rem;">Portfolio Mix</h3>', unsafe_allow_html=True)
         
-        # Donut Chart - Emerald Green & Grey Theme
+        # Donut Chart - Matching Framework Categories
         fig_donut = go.Figure(data=[go.Pie(
-            labels=['Debt MF', 'Flexi Cap', 'Mid Cap', 'Small Cap'],
-            values=[debt_alloc*100, equity_alloc*50, 20, 10],
+            labels=['Debt (Defensive)', 'Gold (Defensive)', 'Large Cap (Core)', 'Mid Cap (Alpha)', 'Small Cap (Alpha)'],
+            values=[debt_pct, gold_pct, large_pct, mid_pct, small_pct],
             hole=0.6,
-            # COLORS: Grey for Debt, Shades of Emerald for Equity
-            marker=dict(colors=['#d1d5db', '#10b981', '#34d399', '#6ee7b7']),
-            textinfo='label+percent',
+            # Colors: Grey/Gold (Defensive), Blue (Core), Green Shades (Alpha)
+            marker=dict(colors=['#9ca3af', '#fbbf24', '#3b82f6', '#34d399', '#6ee7b7']),
+            textinfo='percent',
             textfont=dict(size=14, color='#ffffff'),
-            hovertemplate='<b>%{label}</b><br>%{value:.0f}%<br>₹%{value:,.0f}<extra></extra>'
+            hovertemplate='<b>%{label}</b><br>%{value:.0f}%<extra></extra>'
         )])
         
         fig_donut.update_layout(
@@ -734,8 +752,8 @@ st.markdown("""
             💎 <b>The Wealth Blueprint</b> - Professional Financial Planning Tool
         </p>
         <p style='color: #475569; font-size: 0.9rem; margin: 0.3rem 0;'>
-            Designed & Developed by <b style='color: #3b82f6;'>[Your Name]</b> | 
-            PGDM Finance & Analytics | {datetime.now().strftime('%B %Y')}
+            Designed & Developed by <b style='color: #3b82f6;'>Neshitha Korrapati</b> | 
+            www.linkedin.com/in/neshitha-korrapati | neshitha.kc@gmail.com }
         </p>
         <p style='color: #475569; font-size: 0.85rem; margin: 1rem 0 0 0;'>
             ⚠️ <i>Disclaimer: Projections based on assumed returns. Actual results may vary. 
