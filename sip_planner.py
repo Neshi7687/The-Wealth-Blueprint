@@ -471,11 +471,11 @@ with tab1:
     with col_def1:
         st.markdown('<p class="input-label">Debt Mutual Funds</p>', unsafe_allow_html=True)
         debt_pct = st.slider("debt_slider", 0, 100, allocs["Debt MF"], key="s_debt", help=tooltips["Debt"])
-        st.markdown(f'<p class="input-value">{debt_pct}% <span style="font-size:0.8rem; color:#9ca3af; font-weight:400;">(Suggested: {allocs["Debt MF"]}% | Expected Return: {rets["Debt MF"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="font-size:0.9rem; color:#9ca3af; margin-top:-5px;">(Suggested: <b style="color:#3b82f6">{allocs["Debt MF"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Debt MF"]*100:.1f}%</b>)</p>', unsafe_allow_html=True)
     with col_def2:
         st.markdown('<p class="input-label">Gold ETFs</p>', unsafe_allow_html=True)
         gold_pct = st.slider("gold_slider", 0, 100, allocs["Gold ETF"], key="s_gold", help=tooltips["Gold"])
-        st.markdown(f'<p class="input-value">{gold_pct}% <span style="font-size:0.8rem; color:#9ca3af; font-weight:400;">(Suggested: {allocs["Gold ETF"]}% | Expected Return: {rets["Gold ETF"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="font-size:0.9rem; color:#9ca3af; margin-top:-5px;">(Suggested: <b style="color:#3b82f6">{allocs["Gold ETF"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Gold ETF"]*100:.1f}%</b>)</p>', unsafe_allow_html=True)
 
     # --- CLASS II: CORE EQUITY ---
     st.markdown(f"""
@@ -484,10 +484,10 @@ with tab1:
         </div>
     """, unsafe_allow_html=True)
     
-    st.markdown('<p class="input-label">Large Cap (Nifty 50)</p>', unsafe_allow_html=True)
+    st.markdown('<p class="input-label">Large Cap</p>', unsafe_allow_html=True)
     large_pct = st.slider("large_slider", 0, 100, allocs["Large Cap"], key="s_large", help=tooltips["Large"])
-    st.markdown(f'<p class="input-value">{large_pct}% <span style="font-size:0.8rem; color:#9ca3af; font-weight:400;">(Suggested: {allocs["Large Cap"]}% | Expected Return: {rets["Large Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
-
+    st.markdown(f'<p style="font-size:0.9rem; color:#9ca3af; margin-top:-5px;">(Suggested: <b style="color:#3b82f6">{allocs["Large Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Large Cap"]*100:.1f}%</b>)</p>', unsafe_allow_html=True)
+   
     # --- CLASS III: ALPHA GENERATORS ---
     st.markdown(f"""
         <div style='background-color: #1a1a1a; padding: 10px 15px; border-radius: 8px; border-left: 4px solid #10b981; margin-top: 20px; margin-bottom: 15px;'>
@@ -499,12 +499,11 @@ with tab1:
     with col_alp1:
         st.markdown('<p class="input-label">Mid Cap Funds</p>', unsafe_allow_html=True)
         mid_pct = st.slider("mid_slider", 0, 100, allocs["Mid Cap"], key="s_mid", help=tooltips["Mid"])
-        st.markdown(f'<p class="input-value">{mid_pct}% <span style="font-size:0.8rem; color:#9ca3af; font-weight:400;">(Suggested: {allocs["Mid Cap"]}% | Expected Return: {rets["Mid Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="font-size:0.9rem; color:#9ca3af; margin-top:-5px;">(Suggested: <b style="color:#3b82f6">{allocs["Mid Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Mid Cap"]*100:.1f}%</b>)</p>', unsafe_allow_html=True)
     with col_alp2:
         st.markdown('<p class="input-label">Small Cap Funds</p>', unsafe_allow_html=True)
         small_pct = st.slider("small_slider", 0, 100, allocs["Small Cap"], key="s_small", help=tooltips["Small"])
-        st.markdown(f'<p class="input-value">{small_pct}% <span style="font-size:0.8rem; color:#9ca3af; font-weight:400;">(Suggested: {allocs["Small Cap"]}% | Expected Return: {rets["Small Cap"]*100:.1f}%)</span></p>', unsafe_allow_html=True)
-
+        st.markdown(f'<p style="font-size:0.9rem; color:#9ca3af; margin-top:-5px;">(Suggested: <b style="color:#3b82f6">{allocs["Small Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Small Cap"]*100:.1f}%</b>)</p>', unsafe_allow_html=True)
     # Check Total
     total_alloc = debt_pct + gold_pct + large_pct + mid_pct + small_pct
     if total_alloc != 100:
