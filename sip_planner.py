@@ -251,6 +251,12 @@ st.markdown("""
         background-color: #2563eb;
     }
     </style>
+    /* Increase Size of Slider Value (The floating number on the handle) */
+    div[data-testid="stThumbValue"] {
+        font-size: 1.4rem !important; /* Significantly bigger */
+        font-weight: 800 !important;  /* Extra Bold */
+        padding-bottom: 5px !important; /* Little space */
+    }
 """, unsafe_allow_html=True)
 
 # Financial Constants
@@ -504,7 +510,7 @@ with tab1:
     with col_alp2:
         st.markdown('<p class="input-label">Small Cap Funds</p>', unsafe_allow_html=True)
         small_pct = st.slider("", 0, 100, allocs["Small Cap"], key="s_small", help=tooltips["Small"], label_visibility="collapsed")
-        st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:1.2rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Small Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Small Cap"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:0.9rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Small Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Small Cap"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
         
     # Check Total
     total_alloc = debt_pct + gold_pct + large_pct + mid_pct + small_pct
