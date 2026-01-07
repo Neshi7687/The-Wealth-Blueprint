@@ -854,18 +854,19 @@ display_data = yearly_data.copy()
 for col in ['Monthly SIP', 'Total Invested', 'Total Wealth', 'Wealth Gain']:
     display_data[col] = display_data[col].apply(lambda x: f"₹{x:,.0f}")
 
-# --- Styled Dataframe (Updated Header Color) ---
-# --- Styled Dataframe (Updated Header Color) ---
+# --- Styled Dataframe (Blue Header + Hidden Index) ---
 def highlight_rows(row):
     # CSS for the rows: Dark Grey Background + White Text + Bigger Font
     return ['background-color: #1e293b; color: white; font-size: 1.2rem; font-family: Inter; border-bottom: 1px solid #334155'] * len(row)
 
 # Apply styles
-styled_df = display_data.style.apply(highlight_rows, axis=1)\
+styled_df = display_data.style\
+    .hide(axis="index")\
+    .apply(highlight_rows, axis=1)\
     .set_table_styles([
-        # Header Styling: NEW Background Color (#041759) + Bold White Text
+        # Header Styling: Blue Background (#041759) + Bold White Text
         {'selector': 'th', 'props': [
-            ('background-color', '#041759'),  # <--- YOUR COLOR
+            ('background-color', '#041759'), 
             ('color', 'white'), 
             ('font-size', '1.3rem'), 
             ('font-weight', 'bold'),
@@ -876,7 +877,7 @@ styled_df = display_data.style.apply(highlight_rows, axis=1)\
         {'selector': 'td', 'props': [('padding', '12px')]}
     ])
 
-# Render with st.table to force proper styling
+# Render as Table (Forces colors to show correctly)
 st.table(styled_df)
 
 # Export functionality
