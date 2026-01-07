@@ -215,14 +215,7 @@ st.markdown("""
         padding: 1.0rem 2rem; /* Increased padding for better look */
         font-size: 1.8rem;    /* <--- INCREASED FONT SIZE */
         font-weight: 800;     /* <--- BOLD TEXT */
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        background-color: transparent;
-        color: #94a3b8;
-        border-radius: 6px;
-        padding: 0.8rem 1.5rem;
-        font-weight: 600;
+
     }
     
     .stTabs [aria-selected="true"] {
