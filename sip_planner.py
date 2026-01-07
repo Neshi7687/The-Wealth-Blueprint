@@ -97,7 +97,7 @@ st.markdown("""
     }
     
     .metric-card:hover {
-        border-color: #dc2626; /* <--- Brighter Red on Hover */
+        border-color: #3b82f6; /* <--- Brighter Red on Hover */
         box-shadow: 0 4px 16px rgba(220, 38, 38, 0.2); /* Red Glow */
         transform: translateY(-2px);
     }
