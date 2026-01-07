@@ -510,7 +510,7 @@ with tab1:
     if total_alloc != 100:
         st.warning(f"⚠️ Total Allocation is {total_alloc}%. Please adjust to 100%.")
    
-    # --- NEW: Strategy Decoder (Complete & Accurate Logic) ---
+    # --- NEW: Strategy Decoder (Rendered Correctly) ---
     st.markdown("<br>", unsafe_allow_html=True)
     with st.expander("💡 Strategy Logic: The 'Why' Behind Your Portfolio"):
         st.markdown("""
@@ -553,6 +553,7 @@ with tab1:
                 </div>
             </div>
         """, unsafe_allow_html=True)
+
 with tab2:
     # Calculate weighted return based on user sliders
     weighted_return = (
