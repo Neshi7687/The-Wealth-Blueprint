@@ -213,8 +213,8 @@ st.markdown("""
         color: #94a3b8;
         border-radius: 6px;
         padding: 1.0rem 2rem; /* Increased padding for better look */
-        font-size: 1.3rem;    /* <--- INCREASED FONT SIZE */
-        font-weight: 700;     /* <--- BOLD TEXT */
+        font-size: 1.8rem;    /* <--- INCREASED FONT SIZE */
+        font-weight: 800;     /* <--- BOLD TEXT */
     }
     
     .stTabs [data-baseweb="tab"] {
