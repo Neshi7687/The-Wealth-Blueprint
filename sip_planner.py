@@ -245,18 +245,11 @@ st.markdown("""
         background-color: #2563eb;
     }
 
-    /* FORCE Slider Number Size - Aggressive Method */
-    div[data-testid="stThumbValue"],
-    div[data-testid="stThumbValue"] * {
-        font-size: 28px !important;    /* Much larger font */
-        font-weight: 900 !important;   /* Extra Bold */
-        min-width: 40px !important;    /* Force box to be wide enough */
-        height: auto !important;       /* Allow height to grow */
-        line-height: 1.2 !important;   /* Center the text vertically */
-        display: flex !important;      /* Ensure centering */
-        align-items: center !important;
-        justify-content: center !important;
- 
+    .app-subtitle {
+        color: #e0e7ff;
+        font-size: 1.4rem;  /* Increased size */
+        font-weight: 500;   /* Optional: Made slightly bolder for better visibility */
+        margin-top: 0.5rem; 
     }
     </style>
 """, unsafe_allow_html=True)
