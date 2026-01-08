@@ -600,7 +600,7 @@ with tab2:
     # --- NEW: Metric Explainer (Question Mark Toggle) ---
     with st.expander("❓ Guide: How to Read This Report"):
         st.markdown("""
-            <div style='color: #e0e7ff; font-size: rem; line-height: 1.5;'>
+            <div style='color: #e0e7ff; font-size: 1rem; line-height: 1.5;'>
                 <p style='margin-bottom: 10px;'><b>Understanding Your Projections:</b></p>
                 <ul style='padding-left: 20px;'>
                     <li>💰 <b>Maturity Value:</b> The estimated total value of your portfolio at the end of the tenure (Pre-tax).</li>
