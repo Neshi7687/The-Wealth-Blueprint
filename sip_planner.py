@@ -851,7 +851,7 @@ with tab2:
                 </h3>
                 <p style="color: #e2e8f0; font-size: 1rem; margin: 0.8rem 0;">
                     <b>Future Value:</b> {format_indian_currency(final_wealth)}<br>
-                    <b>Inflation Adjusted ({inflation_rate}%):</b><br>
+                    <b>Inflation Adjusted:</b>({inflation_rate}%)<br>
                     <b style="color: #10b981; font-size: 1.3rem;">Today's Value:</b>{format_indian_currency(real_value)}
             </div>
         """, unsafe_allow_html=True)
