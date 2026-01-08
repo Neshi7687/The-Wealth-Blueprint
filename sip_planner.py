@@ -816,10 +816,10 @@ with tab2:
         st.markdown(f"""
             <div class="section-card">
                 <h3 style="color: #ffffff; margin-bottom: 1rem;">💼 Tax Impact (LTCG)</h3>
-                <p style="color: #e2e8f0; margin: 0.8rem 0;">
+                <p style="color: #e2e8f0; font-size: 1rem; margin: 0.8rem 0;">
                     <b>Gross Wealth:</b> {format_indian_currency(final_wealth)}<br>
                     <b>LTCG Tax (12.5%):</b> <span style="color: #ef4444;">-{format_indian_currency(ltcg_tax)}</span><br>
-                    <b style="color: #10b981; font-size: 1.5rem;">Net Post-Tax Wealth:</b> {format_indian_currency(post_tax_wealth)}
+                    <b style="color: #10b981; font-size: 1.3rem;">Net Post-Tax Wealth:</b> {format_indian_currency(post_tax_wealth)}
                 </p>
             </div>
         """, unsafe_allow_html=True)
@@ -828,10 +828,10 @@ with tab2:
         st.markdown(f"""
             <div class="section-card">
                 <h3 style="color: #ffffff; margin-bottom: 1rem;">🔄 Real Purchasing Power</h3>
-                <p style="color: #e2e8f0; margin: 0.8rem 0;">
+                <p style="color: #e2e8f0; font-size: 1rem; margin: 0.8rem 0;">
                     <b>Future Value:</b> {format_indian_currency(final_wealth)}<br>
                     <b>Inflation Adjusted ({inflation_rate}%):</b><br>
-                    <b style="color: #10b981; font-size: 1.5rem;">Today's Value:</b>{format_indian_currency(real_value)}
+                    <b style="color: #10b981; font-size: 1.3rem;">Today's Value:</b>{format_indian_currency(real_value)}
             </div>
         """, unsafe_allow_html=True)
 
@@ -931,14 +931,14 @@ st.download_button(
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
     <div style='text-align: center; padding: 2rem; border-top: 1px solid #334155;'>
-        <p style='color: #64748b; margin: 0.3rem 0;'>
+        <p style='color: #64748b; font-size: 1.1rem; margin: 0.3rem 0;'>
             💎 <b>The Wealth Blueprint</b> - Professional Financial Planning Tool
         </p>
-        <p style='color: #475569; font-size: 0.9rem; margin: 0.3rem 0;'>
+        <p style='color: #475569; font-size: 1.1rem; margin: 0.3rem 0;'>
             Designed & Developed by <b style='color: #3b82f6;'>Neshitha Korrapati</b> | 
             www.linkedin.com/in/neshitha-korrapati | neshitha.kc@gmail.com }
         </p>
-        <p style='color: #475569; font-size: 0.85rem; margin: 1rem 0 0 0;'>
+        <p style='color: #475569; font-size: 0.95rem; margin: 1rem 0 0 0;'>
             ⚠️ <i>Disclaimer: Projections based on assumed returns. Actual results may vary. 
             Consult a certified financial advisor before making investment decisions.</i>
         </p>
