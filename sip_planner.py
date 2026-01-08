@@ -121,14 +121,14 @@ st.markdown("""
     
     .metric-subtitle {
         color: #64748b;
-        font-size: 0.75rem;
+        font-size: 1rem;
         margin-top: 0.5rem;
     }
     
     /* Input Labels */
     .input-label {
         color: #ffffff;
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
     }
@@ -147,6 +147,7 @@ st.markdown("""
         border-radius: 10px;
         padding: 1.2rem 1.5rem;
         text-align: center;
+        font-size: 1.1rem;
         cursor: pointer;
         transition: all 0.3s ease;
         margin: 0.5rem;
