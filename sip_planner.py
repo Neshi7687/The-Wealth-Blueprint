@@ -512,12 +512,12 @@ with tab1:
         st.markdown('<p class="input-label">Debt Mutual Funds</p>', unsafe_allow_html=True)
         debt_pct = st.slider("", 0, 100, allocs["Debt MF"], key="s_debt", help=tooltips["Debt"], label_visibility="collapsed")
         # Text Size Increased to 1.3rem
-        st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:0.9rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Debt MF"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Debt MF"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:1rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Debt MF"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Debt MF"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
         
     with col_def2:
         st.markdown('<p class="input-label">Gold ETFs</p>', unsafe_allow_html=True)
         gold_pct = st.slider("", 0, 100, allocs["Gold ETF"], key="s_gold", help=tooltips["Gold"], label_visibility="collapsed")
-        st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:0.9rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Gold ETF"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Gold ETF"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:1rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Gold ETF"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Gold ETF"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
         
     # --- CLASS II: CORE EQUITY (Blue Header) ---
     st.markdown(f"""
@@ -528,7 +528,7 @@ with tab1:
     
     st.markdown('<p class="input-label">Large Cap </p>', unsafe_allow_html=True)
     large_pct = st.slider("", 0, 100, allocs["Large Cap"], key="s_large", help=tooltips["Large"], label_visibility="collapsed")
-    st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:0.9rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Large Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Large Cap"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
+    st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:1rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Large Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Large Cap"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
     
     # --- CLASS III: ALPHA GENERATORS (Mustard Yellow Header) ---
     st.markdown(f"""
@@ -541,12 +541,12 @@ with tab1:
     with col_alp1:
         st.markdown('<p class="input-label">Mid Cap Funds</p>', unsafe_allow_html=True)
         mid_pct = st.slider("", 0, 100, allocs["Mid Cap"], key="s_mid", help=tooltips["Mid"], label_visibility="collapsed")
-        st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:0.9rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Mid Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Mid Cap"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:1rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Mid Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Mid Cap"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
         
     with col_alp2:
         st.markdown('<p class="input-label">Small Cap Funds</p>', unsafe_allow_html=True)
         small_pct = st.slider("", 0, 100, allocs["Small Cap"], key="s_small", help=tooltips["Small"], label_visibility="collapsed")
-        st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:0.9rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Small Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Small Cap"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="margin-top:-5px;"><span style="font-size:1rem; color:#9ca3af; font-weight:400;">(Suggested: <b style="color:#3b82f6">{allocs["Small Cap"]}%</b> | Expected Return: <b style="color:#3b82f6">{rets["Small Cap"]*100:.1f}%</b>)</span></p>', unsafe_allow_html=True)
         
     # Check Total
     total_alloc = debt_pct + gold_pct + large_pct + mid_pct + small_pct
@@ -558,7 +558,7 @@ with tab1:
     st.markdown("<br>", unsafe_allow_html=True)
     with st.expander("💡 Strategy Logic: Understanding Your Profile"):
         st.markdown("""
-<div style='color: #e0e7ff; font-size: 0.95rem; line-height: 1.6;'>
+<div style='color: #e0e7ff; font-size: 1.1rem; line-height: 1.6;'>
 <p>This planner creates a custom <b>Strategic Asset Allocation</b> for you. Instead of a one-size-fits-all approach, we tailor the asset mix to match your financial personality. Here is the logic behind each profile:</p>
 
 <div style='margin-bottom: 15px; border-left: 3px solid #3b82f6; padding-left: 10px;'>
@@ -600,7 +600,7 @@ with tab2:
     # --- NEW: Metric Explainer (Question Mark Toggle) ---
     with st.expander("❓ Guide: How to Read This Report"):
         st.markdown("""
-            <div style='color: #e0e7ff; font-size: 0.9rem; line-height: 1.5;'>
+            <div style='color: #e0e7ff; font-size: rem; line-height: 1.5;'>
                 <p style='margin-bottom: 10px;'><b>Understanding Your Projections:</b></p>
                 <ul style='padding-left: 20px;'>
                     <li>💰 <b>Maturity Value:</b> The estimated total value of your portfolio at the end of the tenure (Pre-tax).</li>
@@ -867,25 +867,21 @@ st.markdown("""
 # --- NEW: Explanation Toggle for Table ---
 with st.expander("ℹ️ How to Read This Table? (Calculation Logic)"):
     st.markdown("""
-        <div style='color: #e0e7ff; font-size: 0.95rem; line-height: 1.6;'>
-            <p>This table provides a transparent, year-by-year breakdown of your wealth accumulation journey. Here is how each column is calculated:</p>
-            
-            <ul style='margin-bottom: 10px;'>
-                <li><b>Monthly SIP:</b> This shows your contribution amount for that year. <br>
-                <i>Note: If you selected a "Step-up," you will see this amount increase every year (e.g., Year 2 is 10% higher than Year 1).</i></li>
-                
-                <li><b>Total Invested:</b> The cumulative sum of all SIP installments paid up to that year. This is your "Skin in the game."</li>
-                
-                <li><b>Total Wealth:</b> The market value of your portfolio at the end of that year. <br>
-                <i>Logic: It accounts for the compounding interest earned on both your principal and previous years' interest.</i></li>
-                
-                <li><b>Wealth Gain:</b> The difference between your <i>Total Wealth</i> and <i>Total Invested</i>. This represents the power of compounding working in your favor.</li>
-            </ul>
-            <p style='color: #9ca3af; font-size: 0.9rem;'>
-                <i>*Pro Tip: Notice how "Wealth Gain" starts small in the early years but grows exponentially in the later years. This is the "Hockey Stick" effect of long-term compounding.</i>
-            </p>
-        </div>
-    """, unsafe_allow_html=True)
+<div style='color: #e0e7ff; font-size: 0.95rem; line-height: 1.6;'>
+<p>This table provides a transparent, year-by-year breakdown of your wealth accumulation journey. Here is how each column is calculated:</p>
+<ul style='margin-bottom: 10px;'>
+<li><b>Monthly SIP:</b> This shows your contribution amount for that year.<br>
+<i>Note: If you selected a "Step-up," you will see this amount increase every year (e.g., Year 2 is 10% higher than Year 1).</i></li>
+<li><b>Total Invested:</b> The cumulative sum of all SIP installments paid up to that year. This is your "Skin in the game."</li>
+<li><b>Total Wealth:</b> The market value of your portfolio at the end of that year.<br>
+<i>Logic: It accounts for the compounding interest earned on both your principal and previous years' interest.</i></li>
+<li><b>Wealth Gain:</b> The difference between your <i>Total Wealth</i> and <i>Total Invested</i>. This represents the power of compounding working in your favor.</li>
+</ul>
+<p style='color: #9ca3af; font-size: 0.9rem;'>
+<i>*Pro Tip: Notice how "Wealth Gain" starts small in the early years but grows exponentially in the later years. This is the "Hockey Stick" effect of long-term compounding.</i>
+</p>
+</div>
+""", unsafe_allow_html=True)
 
 # ... (Previous code remains the same until 'Year-wise Breakdown Table' section)
 
@@ -952,14 +948,14 @@ st.download_button(
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
     <div style='text-align: center; padding: 2rem; border-top: 1px solid #334155;'>
-        <p style='color: #64748b; font-size: 1.1rem; margin: 0.3rem 0;'>
+        <p style='color: #64748b; font-size: 1.3rem; margin: 0.3rem 0;'>
             💎 <b>The Wealth Blueprint</b> - Professional Financial Planning Tool
         </p>
-        <p style='color: #475569; font-size: 1.1rem; margin: 0.3rem 0;'>
+        <p style='color: #475569; font-size: 1.25rem; margin: 0.3rem 0;'>
             Designed & Developed by <b style='color: #3b82f6;'>Neshitha Korrapati</b> | 
             www.linkedin.com/in/neshitha-korrapati | neshitha.kc@gmail.com }
         </p>
-        <p style='color: #475569; font-size: 0.95rem; margin: 1rem 0 0 0;'>
+        <p style='color: #475569; font-size: 1rem; margin: 1rem 0 0 0;'>
             ⚠️ <i>Disclaimer: Projections based on assumed returns. Actual results may vary. 
             Consult a certified financial advisor before making investment decisions.</i>
         </p>
