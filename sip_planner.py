@@ -947,7 +947,7 @@ st.download_button(
 # Footer
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
-    <div style='text-align: center; padding: 2rem; border-top: 2px solid #590303;'>
+    <div style='text-align: center; padding: 2rem; border-top: 1.5px solid #590303;'>
         <p style='color: #ffffff; font-size: 1.3rem; margin: 0.3rem 0;'>
             💎 <b>The Wealth Blueprint</b> - Professional Financial Planning Tool
         </p>
