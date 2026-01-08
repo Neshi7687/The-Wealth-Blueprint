@@ -850,34 +850,37 @@ with st.expander("ℹ️ How to Read This Table? (Calculation Logic)"):
 yearly_data = df_sip[df_sip['Month'] % 12 == 0].copy()
 yearly_data['Year'] = (yearly_data['Month'] // 12).astype(int)
 
-# [STEP 1] Select using the ORIGINAL name 'SIP_Amount' (This fixes the error)
+# [Step 1] Select using ORIGINAL column names first (Prevents KeyError)
 yearly_data = yearly_data[['Year', 'SIP_Amount', 'Total_Invested', 'Current_Wealth', 'Returns']]
 
-# [STEP 2] Rename to 'Monthly SIP' for the final display
+# [Step 2] Rename to Display Names
 yearly_data.columns = ['Year', 'Monthly SIP', 'Total Invested', 'Total Wealth', 'Wealth Gain']
 
-# [STEP 3] Reset index to ensure the table starts clean
+# [Step 3] Reset index to keep the CSV export clean
 yearly_data.reset_index(drop=True, inplace=True)
 
-# Format numbers with ₹ symbol
+# 2. PREPARE DISPLAY TABLE
 display_data = yearly_data.copy()
+
+# [CRITICAL FIX] Set 'Year' as the Index. 
+# This completely removes the unwanted "0, 1, 2..." column.
+display_data.set_index('Year', inplace=True)
+
+# Format numbers with ₹ and commas
 for col in ['Monthly SIP', 'Total Invested', 'Total Wealth', 'Wealth Gain']:
     display_data[col] = display_data[col].apply(lambda x: f"₹{x:,.0f}")
 
-# 2. DEFINE STYLING
+# 3. DEFINE STYLING
 def highlight_rows(row):
+    # Standard Dark Grey for data rows
     return ['background-color: #1e293b; color: white; font-size: 1.2rem; font-family: Inter; border-bottom: 1px solid #334155'] * len(row)
 
-def highlight_year_col(col):
-    return ['background-color: #041759; color: white; font-size: 1.2rem; font-weight: bold; border-bottom: 1px solid #3b82f6'] * len(col)
-
-# 3. APPLY STYLES & RENDER
-# .hide(axis="index") is what removes the 0, 1, 2... numbers
+# 4. APPLY STYLES & RENDER
+# Note: The 'Year' column is now an index, so it automatically gets the Blue Header style ('th').
 styled_df = display_data.style\
-    .hide(axis="index")\
     .apply(highlight_rows, axis=1)\
-    .apply(highlight_year_col, subset=['Year'], axis=0)\
     .set_table_styles([
+        # Style Headers (including the 'Year' column now)
         {'selector': 'th', 'props': [
             ('background-color', '#041759'), 
             ('color', 'white'), 
@@ -886,6 +889,7 @@ styled_df = display_data.style\
             ('padding', '12px'),
             ('border-bottom', '2px solid #3b82f6')
         ]},
+        # Style Data Cells
         {'selector': 'td', 'props': [('padding', '12px')]}
     ])
 
