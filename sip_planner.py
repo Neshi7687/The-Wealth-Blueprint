@@ -947,15 +947,15 @@ st.download_button(
 # Footer
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
-    <div style='text-align: center; padding: 2rem; border-top: 1px solid #ffffff;'>
-        <p style='color: #64748b; font-size: 1.3rem; margin: 0.3rem 0;'>
+    <div style='text-align: center; padding: 2rem; border-top: 1px solid #590303;'>
+        <p style='color: #ffffff; font-size: 1.3rem; margin: 0.3rem 0;'>
             💎 <b>The Wealth Blueprint</b> - Professional Financial Planning Tool
         </p>
-        <p style='color: #475569; font-size: 1.25rem; margin: 0.3rem 0;'>
+        <p style='color: #ffffff; font-size: 1.25rem; margin: 0.3rem 0;'>
             Designed & Developed by <b style='color: #3b82f6;'>Neshitha Korrapati</b> | 
             www.linkedin.com/in/neshitha-korrapati | neshitha.kc@gmail.com 
         </p>
-        <p style='color: #475569; font-size: 1rem; margin: 1rem 0 0 0;'>
+        <p style='color: #d8d7de; font-size: 1rem; margin: 1rem 0 0 0;'>
             ⚠️ <i>Disclaimer: Projections based on assumed returns. Actual results may vary. 
             Consult a certified financial advisor before making investment decisions.</i>
         </p>
