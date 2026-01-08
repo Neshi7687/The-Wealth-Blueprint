@@ -219,6 +219,10 @@ st.markdown("""
         font-weight: 700 !important;  /* Extra Bold */
         color: #e2e8f0 !important;    /* Light Grey Text */
     }
+    /* Add Space below the Tab Headings */
+    div[data-baseweb="tab-list"] {
+        margin-bottom: 2rem !important; /* Adjust '2rem' to increase/decrease space */
+    }
     
     /* Active Tab Text Color (White) */
     button[aria-selected="true"] div p {
