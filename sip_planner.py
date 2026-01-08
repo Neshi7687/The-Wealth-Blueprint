@@ -67,7 +67,7 @@ st.markdown("""
     
     /* Section Cards (Black with Red Border) */
     .section-card {
-        background-color: #0f0f0f; /* Very dark grey, almost black */
+        background: linear-gradient(135deg, #000000 0%, #7f1d1d 100%) /* Very dark grey, almost black */
         border-radius: 12px;
         padding: 2rem;
         margin-bottom: 2rem;
@@ -104,7 +104,7 @@ st.markdown("""
     
     .metric-label {
         color: #ffffff;
-        font-size: 0.85rem;
+        font-size: 0.99rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.5px;
