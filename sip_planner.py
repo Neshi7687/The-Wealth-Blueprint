@@ -247,7 +247,7 @@ st.markdown("""
 
     /* Increase Size of Slider Value (The floating number on the handle) */
     div[data-testid="stThumbValue"] {
-        font-size: 1.8rem !important; 
+        font-size: 2.3rem !important; 
         font-weight: 800 !important;
         padding-bottom: 5px !important; 
     }
