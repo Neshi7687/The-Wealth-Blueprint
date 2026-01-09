@@ -718,7 +718,7 @@ with tab2:
                 '#b45309', '#d97706'   # Mustard/Dark Yellows for Alpha (Matches Header, Darker for white text visibility)
             ]),
             textinfo='percent',
-            textfont=dict(size=14, color='#ffffff', family="Inter, sans-serif", weight="bold"),
+            textfont=dict(size=20, color='#ffffff', family="Inter, sans-serif", weight="bold"),
             hovertemplate='<b>%{label}</b><br>%{value:.0f}%<br>₹%{value:,.0f}<extra></extra>'
         )])
         
@@ -861,7 +861,7 @@ with tab2:
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
     <div class="section-card">
-        <h2 class="section-title">📅 Detailed Year-wise Projections</h2>
+        <h2 class="section-title">&nbsp;&nbsp; 📅 Detailed Year-wise Projections</h2>
     </div>
 """, unsafe_allow_html=True)
 
