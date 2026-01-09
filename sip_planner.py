@@ -257,57 +257,48 @@ st.markdown("""
         margin-top: 0.5rem; 
     }
     /* --- DYNAMIC BUTTON COLORS (Specific Hex Codes) --- */
-   /* --- ROBUST DYNAMIC RISK BUTTON COLORS --- */
+    /* --- FIXED: Target ONLY the Risk Profile Row (First Row of Columns) --- */
     
-    /* 1. CONSERVATIVE (1st Column in Tab) -> Green #038745 */
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(1) button[kind="primary"],
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(1) button:active,
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(1) button:focus {
+    /* CONSERVATIVE (1st Column of the 1st Row) -> Green */
+    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(1) button {
         background-color: #038745 !important;
-        background: #038745 !important;
         border-color: #038745 !important;
         color: white !important;
     }
     
-    /* Conservative Hover (Inactive State) */
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(1) button[kind="secondary"]:hover {
-        border-color: #038745 !important;
-        color: #038745 !important;
-        background-color: rgba(3, 135, 69, 0.1) !important;
-    }
-
-    /* 2. BALANCED (2nd Column in Tab) -> Orange #de8c02 */
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(2) button[kind="primary"],
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(2) button:active,
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(2) button:focus {
+    /* BALANCED (2nd Column of the 1st Row) -> Orange */
+    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(2) button {
         background-color: #de8c02 !important;
-        background: #de8c02 !important;
         border-color: #de8c02 !important;
         color: white !important;
-    }
-    
-    /* Balanced Hover (Inactive State) */
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(2) button[kind="secondary"]:hover {
-        border-color: #de8c02 !important;
-        color: #de8c02 !important;
-        background-color: rgba(222, 140, 2, 0.1) !important;
     }
 
-    /* 3. AGGRESSIVE (3rd Column in Tab) -> Red #b30404 */
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(3) button[kind="primary"],
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(3) button:active,
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(3) button:focus {
+    /* AGGRESSIVE (3rd Column of the 1st Row) -> Red */
+    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(3) button {
         background-color: #b30404 !important;
-        background: #b30404 !important;
         border-color: #b30404 !important;
         color: white !important;
     }
+
+    /* --- HANDLE "INACTIVE" STATE (Ghost Buttons) --- */
+    /* If the button is NOT primary (inactive), make it transparent with colored border/text */
     
-    /* Aggressive Hover (Inactive State) */
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(3) button[kind="secondary"]:hover {
-        border-color: #b30404 !important;
+    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(1) button[kind="secondary"] {
+        background-color: transparent !important;
+        color: #038745 !important;
+        border: 2px solid #038745 !important;
+    }
+    
+    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(2) button[kind="secondary"] {
+        background-color: transparent !important;
+        color: #de8c02 !important;
+        border: 2px solid #de8c02 !important;
+    }
+    
+    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(3) button[kind="secondary"] {
+        background-color: transparent !important;
         color: #b30404 !important;
-        background-color: rgba(179, 4, 4, 0.1) !important;
+        border: 2px solid #b30404 !important;
     }
     </style>
 """, unsafe_allow_html=True)
