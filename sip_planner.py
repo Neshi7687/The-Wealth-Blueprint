@@ -257,45 +257,53 @@ st.markdown("""
         margin-top: 0.5rem; 
     }
     /* --- DYNAMIC BUTTON COLORS (Specific Hex Codes) --- */
+   /* --- ROBUST DYNAMIC RISK BUTTON COLORS --- */
     
-    /* 1. Conservative (1st Column) -> Green #038745 */
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(1) button[kind="primary"] {
-        background: linear-gradient(135deg, #038745 0%, #026936 100%) !important;
+    /* 1. CONSERVATIVE (1st Column in Tab) -> Green #038745 */
+    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(1) button[kind="primary"],
+    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(1) button:active,
+    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(1) button:focus {
+        background-color: #038745 !important;
+        background: #038745 !important;
         border-color: #038745 !important;
         color: white !important;
     }
     
-    /* 2. Balanced (2nd Column) -> Amber #de8c02 */
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(2) button[kind="primary"] {
-        background: linear-gradient(135deg, #de8c02 0%, #b37002 100%) !important;
-        border-color: #de8c02 !important;
-        color: white !important;
-    }
-
-    /* 3. Aggressive (3rd Column) -> Red #b30404 */
-    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(3) button[kind="primary"] {
-        background: linear-gradient(135deg, #b30404 0%, #8a0303 100%) !important;
-        border-color: #b30404 !important;
-        color: white !important;
-    }
-    
-    /* --- HOVER EFFECTS (Inactive Buttons Matching Your Colors) --- */
-    
-    /* Conservative Hover */
+    /* Conservative Hover (Inactive State) */
     div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(1) button[kind="secondary"]:hover {
         border-color: #038745 !important;
         color: #038745 !important;
         background-color: rgba(3, 135, 69, 0.1) !important;
     }
+
+    /* 2. BALANCED (2nd Column in Tab) -> Orange #de8c02 */
+    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(2) button[kind="primary"],
+    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(2) button:active,
+    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(2) button:focus {
+        background-color: #de8c02 !important;
+        background: #de8c02 !important;
+        border-color: #de8c02 !important;
+        color: white !important;
+    }
     
-    /* Balanced Hover */
+    /* Balanced Hover (Inactive State) */
     div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(2) button[kind="secondary"]:hover {
         border-color: #de8c02 !important;
         color: #de8c02 !important;
         background-color: rgba(222, 140, 2, 0.1) !important;
     }
+
+    /* 3. AGGRESSIVE (3rd Column in Tab) -> Red #b30404 */
+    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(3) button[kind="primary"],
+    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(3) button:active,
+    div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(3) button:focus {
+        background-color: #b30404 !important;
+        background: #b30404 !important;
+        border-color: #b30404 !important;
+        color: white !important;
+    }
     
-    /* Aggressive Hover */
+    /* Aggressive Hover (Inactive State) */
     div[data-baseweb="tab-panel"] div[data-testid="column"]:nth-of-type(3) button[kind="secondary"]:hover {
         border-color: #b30404 !important;
         color: #b30404 !important;
