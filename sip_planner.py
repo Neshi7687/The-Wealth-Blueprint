@@ -77,7 +77,7 @@ st.markdown("""
     
     .section-title {
         color: #ffffff;
-        font-size: 1.4rem;
+        font-size: 1.8rem;
         font-weight: 700;
         margin-bottom: 1.5rem;
         padding-bottom: 0.8rem;
