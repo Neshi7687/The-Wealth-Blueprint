@@ -257,68 +257,76 @@ st.markdown("""
         margin-top: 0.5rem; 
     }
     /* --- DYNAMIC BUTTON COLORS (Specific Hex Codes) --- */
-    /* --- DYNAMIC RISK BUTTON COLORS (STRATEGIC FIX) --- */
-    /* We target [data-testid="stHorizontalBlock"]:nth-of-type(1) to ensure we ONLY style the BUTTONS row, 
-       ignoring the Slider rows below them. */
+    /* --- FINAL BUTTON COLOR FIX --- */
     
-    /* 1. CONSERVATIVE (Column 1) - Green #038745 */
-    /* Active State (Solid Green) */
-    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(1) button[kind="primary"] {
-        background-color: #038745 !important;
+    /* 1. CONSERVATIVE (Always 1st Column) -> #038745 */
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(1) button {
         border-color: #038745 !important;
-        color: white !important;
-        box-shadow: 0 0 10px rgba(3, 135, 69, 0.5) !important;
-    }
-    /* Inactive State (Transparent with Green Border) */
-    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(1) button[kind="secondary"] {
-        background-color: transparent !important;
-        border: 2px solid #038745 !important;
         color: #038745 !important;
+        background: transparent !important; /* Default to transparent (Ghost) */
+        transition: all 0.2s ease-in-out !important;
     }
-    /* Hover on Inactive */
-    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(1) button[kind="secondary"]:hover {
+    
+    /* Active State (Solid Green) */
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(1) button:focus:not(:active),
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(1) button:focus,
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(1) button:active,
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(1) button[kind="primary"] {
+        background-color: #038745 !important;
+        color: white !important;
+        border: 2px solid #038745 !important;
+    }
+    
+    /* Hover State */
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(1) button:hover {
         background-color: rgba(3, 135, 69, 0.1) !important;
         border-color: #038745 !important;
         color: #038745 !important;
     }
 
-    /* 2. BALANCED (Column 2) - Orange #de8c02 */
-    /* Active State (Solid Orange) */
-    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(2) button[kind="primary"] {
-        background-color: #de8c02 !important;
+    /* 2. BALANCED (Always 2nd Column) -> #de8c02 */
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(2) button {
         border-color: #de8c02 !important;
-        color: white !important;
-        box-shadow: 0 0 10px rgba(222, 140, 2, 0.5) !important;
-    }
-    /* Inactive State (Transparent with Orange Border) */
-    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(2) button[kind="secondary"] {
-        background-color: transparent !important;
-        border: 2px solid #de8c02 !important;
         color: #de8c02 !important;
+        background: transparent !important;
     }
-    /* Hover on Inactive */
-    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(2) button[kind="secondary"]:hover {
+    
+    /* Active State (Solid Orange) */
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(2) button:focus:not(:active),
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(2) button:focus,
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(2) button:active,
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(2) button[kind="primary"] {
+        background-color: #de8c02 !important;
+        color: white !important;
+        border: 2px solid #de8c02 !important;
+    }
+    
+    /* Hover State */
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(2) button:hover {
         background-color: rgba(222, 140, 2, 0.1) !important;
         border-color: #de8c02 !important;
         color: #de8c02 !important;
     }
 
-    /* 3. AGGRESSIVE (Column 3) - Red #b30404 */
-    /* Active State (Solid Red) */
-    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(3) button[kind="primary"] {
-        background-color: #b30404 !important;
+    /* 3. AGGRESSIVE (Always 3rd Column) -> #b30404 */
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(3) button {
         border-color: #b30404 !important;
-        color: white !important;
-        box-shadow: 0 0 10px rgba(179, 4, 4, 0.5) !important;
-    }
-    /* Inactive State (Transparent with Red Border) */
-    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(3) button[kind="secondary"] {
-        background-color: transparent !important;
-        border: 2px solid #b30404 !important;
         color: #b30404 !important;
+        background: transparent !important;
     }
-    /* Hover on Inactive */
-    div[data-baseweb="tab-panel"] [data-testid="stHorizontalBlock"]:nth-of-type(1) [data-testid="column"]:nth-of-type(3) button[kind="secondary"]:hover {
+    
+    /* Active State (Solid Red) */
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(3) button:focus:not(:active),
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(3) button:focus,
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(3) button:active,
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(3) button[kind="primary"] {
+        background-color: #b30404 !important;
+        color: white !important;
+        border: 2px solid #b30404 !important;
+    }
+
+    /* Hover State */
+    div[data-baseweb="tab-panel"] [data-testid="column"]:nth-of-type(3) button:hover {
         background-color: rgba(179, 4, 4, 0.1) !important;
         border-color: #b30404 !important;
         color: #b30404 !important;
