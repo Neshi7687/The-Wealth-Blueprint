@@ -691,13 +691,19 @@ with tab2:
 
     # ... (Rest of your Tab 2 calculation code starts here: weighted_return = ...)    
     # Calculate weighted return based on user sliders
+   # Calculate weighted return based on user sliders
+    
+    # [CRITICAL MATH FIX] Recalculate total to normalize (in case user set sliders > 100%)
+    total_alloc_calc = debt_pct + gold_pct + large_pct + mid_pct + small_pct
+    normalization_factor = total_alloc_calc if total_alloc_calc > 0 else 1
+
     weighted_return = (
         (debt_pct * rets["Debt MF"]) + 
         (gold_pct * rets["Gold ETF"]) + 
         (large_pct * rets["Large Cap"]) + 
         (mid_pct * rets["Mid Cap"]) + 
         (small_pct * rets["Small Cap"])
-    ) / 100
+    ) / normalization_factor  # <--- Divides by actual total instead of 100
     
     monthly_return = weighted_return / 12
     
