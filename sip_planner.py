@@ -60,7 +60,7 @@ st.markdown("""
     
     .app-subtitle {
         color: #e0e7ff;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 650;
         margin-top: 0.5rem;
     }
